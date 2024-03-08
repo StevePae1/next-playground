@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Steve`&apos;`s Next Playground</title>
+        <title>Steve&apos;s Next Playground</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="manifest" href="/manifest.json" />
         <link
@@ -18,7 +18,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.description}>
-          <div>Hi I`&apos;`m Steve</div>
+          <div>Hi I&apos;m Steve</div>
         </div>
 
         <div className={styles.center}>
