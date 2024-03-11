@@ -1,12 +1,13 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Head from "next/head";
+import Photopea from "./components/Photopea/Photopea";
 
 export default function Home() {
   return (
     <>
       <Head>
-        <title>Steve&apos;s Next Playground</title>
+        <title>Steve&apos;s Next Playground s</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="manifest" href="/manifest.json" />
         <link
@@ -18,9 +19,9 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.description}>
-          <div>Hi I&apos;m Steve</div>
+          <div>Hi I&apos;m Steve, this is updated.</div>
         </div>
-
+        <Photopea />
         <div className={styles.center}>
           <Image
             className={styles.logo}
