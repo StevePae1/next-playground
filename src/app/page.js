@@ -3,11 +3,16 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import Head from "next/head";
 import Photopea from "./components/Photopea/Photopea";
-import DraftJs from "./components/DraftJs/DraftJs";
+// import DraftJs from "./components/DraftJs/DraftJs";
 // import Link from "next/link";
 import content from "./content";
 import EasyCrop from "./components/EasyCrop/EasyCrop";
 import { useState } from "react";
+import dynamic from "next/dynamic";
+
+const DraftJs = dynamic(() => import("./components/DraftJs/DraftJs"), {
+  ssr: false,
+});
 
 export default function Home() {
   const [imageSrc, setImageSrc] = useState(null);
@@ -42,6 +47,7 @@ export default function Home() {
     ],
     entityMap: {},
   };
+
   return (
     <>
       <Head>
@@ -78,6 +84,7 @@ export default function Home() {
         ))} */}
 
         <DraftJs initialContent={initialContent} />
+
         <div className={styles.container}>
           <p>Below is photopea</p>
           <Photopea />

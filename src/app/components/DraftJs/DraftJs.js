@@ -7,24 +7,27 @@ import "draft-js/dist/Draft.css";
 import styles from "./DraftJs.module.css";
 
 const DraftJs = ({ initialContent }) => {
-  const createEditorStateFromInitialContent = (initialContent) => {
-    if (initialContent) {
-      const contentState = convertFromRaw(initialContent);
-      return EditorState.createWithContent(contentState);
-    }
-    return EditorState.createEmpty();
-  };
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
-  const [editorState, setEditorState] = useState(() =>
-    createEditorStateFromInitialContent(initialContent)
-  );
-
+  // useEffect(() => {
+  //   if (initialContent) {
+  //     const contentState = convertFromRaw(initialContent);
+  //     setEditorState(EditorState.createWithContent(contentState));
+  //   }
+  // }, [initialContent]);
+  // const onEditorStateChange = (newState) => {
+  //   setEditorState(newState);
+  // };
   return (
     <div className={styles.App}>
       <header className={styles.AppHeader}>Below is Draft-js</header>
       <Editor
+        // editorState={editorState}
         defaultEditorState={editorState}
         onEditorStateChange={setEditorState}
+        wrapperClassName="wrapper-class"
+        editorClassName="editor-class"
+        toolbarClassName="toolbar-class"
       />
     </div>
   );
