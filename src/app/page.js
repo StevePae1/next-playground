@@ -9,6 +9,10 @@ import content from "./content";
 import EasyCrop from "./components/EasyCrop/EasyCrop";
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import SlateComponent from "./components/Slate/Slate";
+import Lexical from "./components/Lexical/Lexical";
+
+// import Editor from "@react-page/editor";
 
 const DraftJs = dynamic(() => import("./components/DraftJs/DraftJs"), {
   ssr: false,
@@ -47,7 +51,16 @@ export default function Home() {
     ],
     entityMap: {},
   };
-
+  const initialContentSlate = {
+    id: 1,
+    name: "Template 1",
+    content: [
+      {
+        type: "paragraph",
+        children: [{ text: "This is the first template." }],
+      },
+    ],
+  };
   return (
     <>
       <Head>
@@ -65,6 +78,8 @@ export default function Home() {
         <div className={styles.description}>
           <div>Hi I&apos;m Steve, this is updated.</div>
         </div>
+        <Lexical />
+        {/* <SlateComponent initialContent={initialContentSlate} /> */}
 
         <div className={styles.container}>
           <p>Below is react-easy-crop</p>
@@ -83,7 +98,7 @@ export default function Home() {
           </Link>
         ))} */}
 
-        <DraftJs initialContent={initialContent} />
+        {/* <DraftJs initialContent={initialContent} /> */}
 
         <div className={styles.container}>
           <p>Below is photopea</p>
