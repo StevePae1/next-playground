@@ -1,58 +1,47 @@
-import { $getRoot, $getSelection } from "lexical";
-import { useEffect } from "react";
-
-import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
+import React from "react";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
-import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
-import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
+import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
+import { $createParagraphNode, $createTextNode, $getRoot } from "lexical";
 import ToolbarPlugin from "../plugins/ToolbarPlugin";
-import TreeViewPlugin from "../plugins/TreeViewPlugin";
-import { $createHeadingNode, $createQuoteNode } from "@lexical/rich-text";
-import { $createParagraphNode, $createTextNode } from "lexical";
 
-const theme = {};
+const initialConfig = {
+  theme: {},
+  onError(error) {
+    console.error(error);
+  },
+  editorState: (editor) => {
+    const initialText = "Some kind of template";
+    const paragraphNode = $createParagraphNode();
+    const textNode = $createTextNode(initialText);
+    paragraphNode.append(
+      $createTextNode("This is a demo environment built with "),
+      $createTextNode("lexical").toggleFormat("code"),
+      $createTextNode("."),
+      $createTextNode(" Try typing in "),
+      $createTextNode("some text").toggleFormat("bold"),
+      $createTextNode(" with "),
+      $createTextNode("different").toggleFormat("italic"),
+      $createTextNode(" formats.")
+    );
 
-// Catch any errors that occur during Lexical updates and log them
-// or throw them as needed. If you don't throw them, Lexical will
-// try to recover gracefully without losing user data.
-function onError(error) {
-  console.error(error);
-}
+    editor.update(() => {
+      const root = $getRoot();
+      root.append(paragraphNode);
+    });
+  },
+};
 
-// const initialEditorState = await loadContent();
-
-function Lexical(props) {
-  const initialConfig = {
-    namespace: "MyEditor",
-    theme,
-    onError,
-    //  {editorState: initialEditorState}
-  };
-  // const [editor] = useLexicalComposerContext();
-  const { contentEditable, placeHolder, editorReadyCallback } = props;
-  const initialText = "Hello, this is the initial text!";
-  return (
-    <LexicalComposer
-      initialConfig={{
-        namespace: "MyEditor",
-        theme,
-        onError,
-      }}
-    >
+const MyEditor = () => (
+  <LexicalComposer initialConfig={initialConfig}>
+    <div className="editor-container">
       <ToolbarPlugin />
-      <RichTextPlugin
-        contentEditable={<ContentEditable className="mainBox" />}
-        placeholder={<div>Enter some text above to use Lexical...</div>}
-        ErrorBoundary={LexicalErrorBoundary}
-      />
-      {/* <EditorWithDirectManipulation /> */}
+      <RichTextPlugin />
       <HistoryPlugin />
-      <AutoFocusPlugin />
-      <TreeViewPlugin />
-    </LexicalComposer>
-  );
-}
+      <ContentEditable className="editor-content" />
+    </div>
+  </LexicalComposer>
+);
 
-export default Lexical;
+export default MyEditor;
