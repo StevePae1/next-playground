@@ -81,7 +81,7 @@ export default function Home() {
         <Lexical />
         {/* <SlateComponent initialContent={initialContentSlate} /> */}
 
-        <div className={styles.container}>
+        {/* <div className={styles.container}>
           <p>Below is react-easy-crop</p>
           <input type="file" accept="image/*" onChange={handleFileChange} />
           {imageSrc && (
@@ -91,7 +91,7 @@ export default function Home() {
           {croppedImage && (
             <img src={croppedImage} alt="Cropped" className={styles.image} />
           )}
-        </div>
+        </div> */}
         {/* {ids.map((id) => (
           <Link href={`/editDoc/${id}`} key={id}>
             <p>Edit Content {id}</p>
@@ -100,7 +100,7 @@ export default function Home() {
 
         {/* <DraftJs initialContent={initialContent} /> */}
 
-        <div className={styles.container}>
+        {/* <div className={styles.container}>
           <p>Below is photopea</p>
           <Photopea />
         </div>
@@ -113,7 +113,7 @@ export default function Home() {
             height={37}
             priority
           />
-        </div>
+        </div> */}
       </main>
     </>
   );
