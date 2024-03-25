@@ -11,6 +11,7 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 import SlateComponent from "./components/Slate/Slate";
 import Lexical from "./components/Lexical/Lexical";
+import ReactAvatar from "./components/ReactAvatar/ReactAvatar";
 
 // import Editor from "@react-page/editor";
 
@@ -79,9 +80,13 @@ export default function Home() {
           <div>Hi I&apos;m Steve, this is updated.</div>
         </div>
         <Lexical />
+
+        <div>
+          <ReactAvatar />
+        </div>
         {/* <SlateComponent initialContent={initialContentSlate} /> */}
 
-        {/* <div className={styles.container}>
+        <div className={styles.container}>
           <p>Below is react-easy-crop</p>
           <input type="file" accept="image/*" onChange={handleFileChange} />
           {imageSrc && (
@@ -91,7 +96,7 @@ export default function Home() {
           {croppedImage && (
             <img src={croppedImage} alt="Cropped" className={styles.image} />
           )}
-        </div> */}
+        </div>
         {/* {ids.map((id) => (
           <Link href={`/editDoc/${id}`} key={id}>
             <p>Edit Content {id}</p>
